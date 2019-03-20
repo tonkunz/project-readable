@@ -4,29 +4,13 @@ import Footer from './Footer'
 import Navbar from './Navbar'
 import Content from './Content'
 
-import {
-  getCategories,
-  getPosts,
-  getComments
-} from '../utils/api'
+import { connect } from 'react-redux'
+import { handleInitialData } from '../actions/shared'
 
 class App extends Component {
-  state = {
-    categories: [],
-    posts: [],
-    comments: []
-  }
 
   componentDidMount(){
-    //Testing API
-    getCategories()
-      .then(categories => this.setState({ categories : categories}))
-
-    getPosts()
-      .then(posts => this.setState({ posts : posts}))
-
-    getComments("8xf0y6ziyjabvozdd253nd")
-      .then(data => this.setState({comments: data}))
+    this.props.dispatch(handleInitialData())
   }
 
   render() {
@@ -42,4 +26,4 @@ class App extends Component {
   }
 }
 
-export default App
+export default connect()(App)

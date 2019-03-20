@@ -10,6 +10,15 @@ const headers = {
   Authorization: token
 }
 
+export const getInitialData = () => {
+  return Promise.all([getPosts(), getCategories()]).then(
+    ([posts, categories]) => ({
+      posts,
+      categories
+    })
+  )
+}
+
 export const getCategories = () => (
   //Get all categories
   fetch(`${url}/categories`, { headers })
