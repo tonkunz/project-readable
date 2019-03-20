@@ -12,3 +12,87 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.app-hr {
+  margin: 0;
+}
+
+/* Styled Header */
+.readable-header {
+  background: linear-gradient(to right, #2193b0, #6dd5ed);
+  color: white;
+}
+
+.readable-header p{
+  margin: 0;
+}
+
+/* Styled Navbar */
+.readable-nav {
+  font-size: 1.5em;
+  padding: 1rem 0;
+}
+
+.readable-nav a {
+  color: #2193b0
+}
+.readable-nav a:hover {
+  color: black;
+  transition: 900ms ease all;
+}
+
+/* Content component styles*/
+.readable-content{
+  padding: 1em;
+}
+
+/* Menu Styles */
+.menu-title {
+  font-size: 1.2em;
+  padding: 0.5rem;
+}
+
+
+/* PostList component styles*/
+
+
+/* PostItem component style */
+.readable-postitem {
+  margin: 0.5rem 0rem;
+  padding: 1em;
+  background: linear-gradient(to right, #e6f7ff, #ffffff);
+}
+
+.readable-postitem hr {
+  margin: 0 0 0.3rem 0;
+}
+
+.post-title {
+  font-size: 1.5em;
+  margin: 0;
+}
+
+.post-span {
+  font-size: 0.9em;
+  margin: 0 1rem 0 0;
+}
+
+/* Styled Footer */
+.readable-footer {
+  font-size: 1em;
+  text-align: center;
+  padding: 1.5rem 0;
+}
+
+.readable-footer a {
+  color: #2193b0;
+}
+
+.custom-border {
+  border: 1px solid #2193b0;
+  border-radius: 5px;
+}
+
+.btn-primary {
+  background-color: #2193b0
+}

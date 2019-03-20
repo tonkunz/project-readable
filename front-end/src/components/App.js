@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
+import Header from './Header'
+import Footer from './Footer'
+import Navbar from './Navbar'
+import Content from './Content'
 
 import {
   getCategories,
   getPosts,
-  getPost,
   getComments
 } from '../utils/api'
 
@@ -11,7 +14,6 @@ class App extends Component {
   state = {
     categories: [],
     posts: [],
-    post: '',
     comments: []
   }
 
@@ -23,9 +25,6 @@ class App extends Component {
     getPosts()
       .then(posts => this.setState({ posts : posts}))
 
-    getPost("8xf0y6ziyjabvozdd253nd")
-      .then(data => this.setState({post : data}))
-
     getComments("8xf0y6ziyjabvozdd253nd")
       .then(data => this.setState({comments: data}))
   }
@@ -33,10 +32,11 @@ class App extends Component {
   render() {
     return (
       <div>
-        Hello World!
-        {
-          this.state.categories.map(category => <p>{category.name}</p>)
-        }
+        <Header />
+        <Navbar />
+        <hr className='app-hr'/>
+        <Content />
+        <Footer />
       </div>
     )
   }

@@ -11,6 +11,7 @@ const headers = {
 }
 
 export const getCategories = () => (
+  //Get all categories
   fetch(`${url}/categories`, { headers })
     .then(res => res.json())
     .then(data => data.categories)
@@ -130,7 +131,7 @@ export const upVoteComment = (id) => (
 )
 
 export const downVoteComment = (id) => (
-  // Used for "down voting" on a comment
+  // Used for "down voting" on voting a comment
   fetch(`${url}/comments/${id}`,{
     headers,
     method: "PUT",
