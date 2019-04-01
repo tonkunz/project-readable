@@ -1,28 +1,41 @@
 import React, { Component } from 'react'
+import moment from 'moment'
+
+import { connect } from 'react-redux'
 
 class PostItem extends Component {
   render() {
+    const { post } = this.props
+
     return (
     <div className="readable-postitem">
       <div className="post-content">
-        <h4 className='post-title'>Post Title</h4>
+        <h4 className='post-title'>{post.title}</h4>
         <div>
-          <span className='post-span'>By: Author </span>
-          <span className='post-span'>When: 19/07/92 | 12:52 </span>
+          <span className='post-span'>By: {post.author} </span>
+          <span className='post-span text-muted'>When: {moment(post.timestamp).format('DD/MM/YYYY')}</span>
         </div>
         <div>
-          <p>
-            Texto da postagem, aqui va iter um texto topzera hehe!
+          <p className='post-body'>
+            {post.body}
           </p>
-          <hr/>
           <div>
-            Curtir / Descurtir / Comentários
+            Curtir/Descurtir: {post.voteScore}/ Comentários: {post.commentCount}
           </div>
         </div>
-      </div>
+      </div>      
+      <hr />
     </div>
     )
   }
 }
 
-export default PostItem
+function mapStateToProps ({ posts }, { id }) {
+  const post = posts[id]
+
+  return {
+    post,
+  }
+}
+
+export default connect(mapStateToProps)(PostItem)

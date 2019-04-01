@@ -23,20 +23,21 @@ code {
   color: white;
 }
 
-.readable-header p{
+.readable-header button{
   margin: 0;
 }
 
 /* Styled Navbar */
-.readable-nav {
-  font-size: 1.5em;
-  padding: 1rem 0;
+.readable-categories {
+  font-size: 0.9em;
 }
 
-.readable-nav a {
-  color: #2193b0
+.readable-categories button {
+  color: #2193b0;
+  border-style: none;
+  background: #FFF;
 }
-.readable-nav a:hover {
+.readable-categories button:hover {
   color: black;
   transition: 900ms ease all;
 }
@@ -58,9 +59,7 @@ code {
 
 /* PostItem component style */
 .readable-postitem {
-  margin: 0.5rem 0rem;
-  padding: 1em;
-  background: linear-gradient(to right, #e6f7ff, #ffffff);
+  padding: 0.1em;
 }
 
 .readable-postitem hr {
@@ -75,6 +74,11 @@ code {
 .post-span {
   font-size: 0.9em;
   margin: 0 1rem 0 0;
+}
+
+.post-body {
+  font-size: 1.1em;
+  margin: 1.2rem 0;
 }
 
 /* Styled Footer */
