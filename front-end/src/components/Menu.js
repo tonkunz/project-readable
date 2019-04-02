@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { NavLink } from 'react-router-dom'
 
 class Menu extends Component {
   state = {
@@ -20,9 +21,9 @@ class Menu extends Component {
     return (
       <div>
         <div className='custom-b pb-4'>
-          <button className='btn btn-primary btn-block'>
+          <NavLink to='/new' className='btn btn-primary btn-block'>
             NEW POST
-          </button>
+          </NavLink>
         </div>
 
         <div className='pb-4'>

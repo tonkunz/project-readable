@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import moment from 'moment'
 import { connect } from 'react-redux'
 import { FaHeart, FaRegHeart, FaComments } from 'react-icons/fa'
+import { NavLink } from 'react-router-dom'
 
 class PostItem extends Component {
   render() {
@@ -10,7 +11,9 @@ class PostItem extends Component {
     return (
     <div className="readable-postitem">
       <div className="post-content">
-        <h4 className='post-title'>{post.title}</h4>
+        <h4 className='post-title'>
+          <NavLink to={`/posts/${post.id}`}>{post.title}</NavLink>
+        </h4>
         <div>
           <span className='post-span'>By: {post.author} </span>
           <span className='post-span text-muted'>When: {moment(post.timestamp).format('DD/MM/YYYY')}</span>

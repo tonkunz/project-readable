@@ -49,13 +49,19 @@ export const getPost = (id) => (
 
 export const savePost = (post) => (
   // Add a new post
-  fetch(`${url}/posts}`, {
+  fetch(`${url}/posts`, {
     headers,
     method: "POST",
     body: JSON.stringify(post)
   })
-    .then(res => res.json())
-    .then(data => data)
+    .then(res => {
+         console.log(res); // res.status = 404
+         if(res.status ===  404 || res.ok === false) {
+            throw new Error('Something went wrong, página nao encontrada');
+         } else {
+             return res.json();
+         }
+     })
     .catch(e => console.log('Error: ', e))
 )
 

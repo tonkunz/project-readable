@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { handleAddPost } from '../actions/posts'
+import { Redirect } from 'react-router-dom'
 
 class NewPost extends Component {
   state = {
@@ -8,6 +9,7 @@ class NewPost extends Component {
     category: '',
     author: '',
     body: '',
+    toHome: false,
   }
 
   handleChange = (e) => (
@@ -37,13 +39,16 @@ class NewPost extends Component {
       category: '',
       author: '',
       body: '',
+      toHome: true,
     })
   }
 
   render () {
-    const { title, author, body } = this.state
+    const { title, author, body, toHome } = this.state
 
-    {/* Route to view*/}
+    if (toHome === true) {
+      return <Redirect to='/'/>
+    }
 
     return (
       <div className='container'>
