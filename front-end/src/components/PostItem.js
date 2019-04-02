@@ -12,7 +12,7 @@ class PostItem extends Component {
     <div className="readable-postitem">
       <div className="post-content">
         <h4 className='post-title'>
-          <NavLink to={`/posts/${post.id}`}>{post.title}</NavLink>
+          <NavLink to={`/${post.category}/${post.id}`}>{post.title}</NavLink>
         </h4>
         <div>
           <span className='post-span'>By: {post.author} </span>

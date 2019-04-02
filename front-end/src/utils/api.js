@@ -89,9 +89,10 @@ export const downVotePost = (id) => (
     .catch(e => console.log('Error: ', e))
 )
 
-export const updatePost = (post) => (
+export const updatePost = (post) => {
   // Edit the details of an existing post
-  fetch(`${url}/posts/${post.id}`, {
+  console.log('OBJETO POST RECEBIDO: ',post)
+  return fetch(`${url}/posts/${post.id}`, {
     headers,
     method: "PUT",
     body: JSON.stringify(post)
@@ -99,7 +100,7 @@ export const updatePost = (post) => (
     .then(res => res.json())
     .then(data => data)
     .catch(e => console.log('Error: ', e))
-)
+}
 
 export const deletePost = (id) => (
   // Sets the deleted flag for a post to 'true'.

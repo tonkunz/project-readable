@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { handlePostDetails } from '../actions/post'
 import moment from 'moment'
-import { FaHeart, FaRegHeart, FaComments } from 'react-icons/fa'
+import { FaChevronCircleLeft, FaHeart, FaRegHeart, FaComments } from 'react-icons/fa'
+import { NavLink } from 'react-router-dom'
 
 class SinglePostPage extends Component {
   state = {
@@ -16,9 +17,8 @@ class SinglePostPage extends Component {
 
   handleDelete = () => {
     alert('Clicou para deletar')
-  }
-  handleEdit = () => {
-    alert('Clicou para editar')
+
+    //dispatch(handleDeletePost(this.props.match.params.id))
   }
 
   render () {
@@ -30,6 +30,9 @@ class SinglePostPage extends Component {
           <div className='col-md-10'>
             <div className="post-content">
               <h4 className='post-title'>
+              <NavLink to='/'>
+                <FaChevronCircleLeft color='#2193b0' size={18} />
+              </NavLink>
                 {post.title}
               </h4>
               <div>
@@ -48,14 +51,12 @@ class SinglePostPage extends Component {
           <div className='col-md-2'>
             <div>
               <div className='btn-group'>
+                <NavLink
+                  className='btn btn-primary'
+                  to={`/${post.category}/${post.id}/edit-post`}
+                > Edit </NavLink>
                 <button
                   className='btn btn-primary'
-                  value='edit'
-                  onClick={() => this.handleEdit()}
-                > Edit </button>
-                <button
-                  className='btn btn-primary'
-                  value='delete'
                   onClick={() => this.handleDelete()}
                 > Delete </button>
               </div>

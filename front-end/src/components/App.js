@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { handleInitialData } from '../actions/shared'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+
+//Componentents
 import Header from './Header'
 import Footer from './Footer'
 import Menu from './Menu'
 import PostList from './PostList'
 import SinglePostPage from './SinglePostPage'
-import { connect } from 'react-redux'
-import { handleInitialData } from '../actions/shared'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
-
-// Testing new post
 import NewPost from './NewPost'
+import EditPost from './EditPost'
 
 class App extends Component {
   state = {
@@ -52,7 +53,8 @@ class App extends Component {
           </div>
         )}/>
         <Route path='/new' component={NewPost}/>
-        <Route path='/posts/:id' component={SinglePostPage} />
+        <Route exact path='/:category/:id' component={SinglePostPage} />
+        <Route path='/:category/:id/edit-post' component={EditPost} />
        <Footer />
       </div>
       </Router>
