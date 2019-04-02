@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
+import { handlePostsByCategory } from '../actions/posts'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 //Componentents
@@ -23,6 +24,16 @@ class App extends Component {
   }
 
   handleCategorySelected = (categorySelected) => {
+    const { dispatch } = this.props
+    
+    console.warn('CATEGORIA SELECIONADA: ',this.state.categorySelected)
+
+    if (categorySelected !== 'all') {
+      dispatch(handlePostsByCategory(categorySelected))
+    } else {
+      dispatch(handleInitialData())
+    }
+
     this.setState({ categorySelected })
   }
 

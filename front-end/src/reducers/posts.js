@@ -1,6 +1,7 @@
 import {
   RECEIVE_POSTS,
   ADD_POST,
+  RECEIVE_CATEGORY_POSTS
 } from '../actions/posts'
 import {
   EDIT_POST
@@ -12,7 +13,6 @@ export default function posts (state = {}, action) {
       const posts = action.posts.reduce((post, current) =>
         {post[current.id] = current; return post}, {})
       return {
-        ...state,
         ...posts
       }
     case ADD_POST:
@@ -24,6 +24,12 @@ export default function posts (state = {}, action) {
       return {
         ...state,
         [action.post.id]: action.post
+      }
+    case RECEIVE_CATEGORY_POSTS:
+      const catPosts = action.posts.reduce((post, current) =>
+        {post[current.id] = current; return post}, {})
+      return {
+        ...catPosts
       }
     default:
       return state
