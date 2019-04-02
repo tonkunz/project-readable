@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { handleAddPost } from '../actions/posts'
 
 class NewPost extends Component {
   state = {
@@ -19,21 +20,30 @@ class NewPost extends Component {
 
     const { title, category, author, body } = this.state
 
-    const post = { title, category, author, body}
+    const post = {
+      id: (Math.random().toString(36).substr(-8)),
+      title,
+      category,
+      author,
+      body,
+      timestamp: Date.now(),
+    }
+    console.log('NOVO POST A SER INSERIDO: ', post)
 
-    // todo: Add post to store
-    console.log('New post', post)
+    this.props.dispatch(handleAddPost(post))
 
     this.setState({
       title: '',
       category: '',
       author: '',
-      body: ''
+      body: '',
     })
   }
 
   render () {
-    const { title, category, author, body } = this.state
+    const { title, author, body } = this.state
+
+    {/* Route to view*/}
 
     return (
       <div className='container'>
@@ -62,13 +72,13 @@ class NewPost extends Component {
               <label>Select Category</label>
               <select className="form-control  mb-4" id='category' onChange={this.handleChange}>
                 {this.props.categories.map(category => 
-                  <option value={category.path}> {category.name.toUpperCase()} </option>
+                  <option value={category.name} key={category.path}> {category.name.toUpperCase()} </option>
                 )}
               </select>
               <label>Post body</label>
               <textarea
                 className='form-control  mb-4'
-                placeHolder='Enter a content of post'
+                placeholder='Enter a content of post'
                 id='body'
                 value={body}
                 onChange={this.handleChange}
