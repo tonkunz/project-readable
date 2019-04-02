@@ -9,7 +9,7 @@ class PostList extends Component {
     const { sortOption, renderByVote, renderByTime} = this.props
 
     return (
-      <ul>
+      <ul style={{listStyle: 'none'}} >
         {sortOption === 'votescore'
           ? renderByVote.map(id => (
             <li key={id}>

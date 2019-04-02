@@ -19,13 +19,13 @@ class Menu extends Component {
   render() {
     return (
       <div>
-        <div className='custom-b'>
+        <div className='custom-b pb-4'>
           <button className='btn btn-primary btn-block'>
             NEW POST
           </button>
         </div>
 
-        <div>
+        <div className='pb-4'>
           <div className='menu-title'>
             <span>ORDER BY:</span>
           </div>

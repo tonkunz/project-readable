@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import moment from 'moment'
-
 import { connect } from 'react-redux'
+import { FaHeart, FaRegHeart, FaComments } from 'react-icons/fa'
 
 class PostItem extends Component {
   render() {
@@ -19,9 +19,7 @@ class PostItem extends Component {
           <p className='post-body'>
             {post.body}
           </p>
-          <div>
-            Curtir/Descurtir: {post.voteScore}/ Comentários: {post.commentCount}
-          </div>
+          <FaRegHeart color='red'/> {post.voteScore} <FaComments /> {post.commentCount}
         </div>
       </div>      
       <hr />

@@ -6,6 +6,9 @@ import PostList from './PostList'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 
+// Testing new post
+import NewPost from './NewPost'
+
 class App extends Component {
   state = {
     categorySelected: 'all',
@@ -27,7 +30,7 @@ class App extends Component {
     return (
       <div>
         <Header />
-        <div className='container readable-content'>
+        {/* <div className='container readable-content'>
           <div className='row'>
             <div className='col-md-3 container'>
               <Menu
@@ -42,7 +45,8 @@ class App extends Component {
               />
             </div>            
           </div>
-        </div>
+        </div> */}
+        <NewPost />
         <Footer />
       </div>
     )

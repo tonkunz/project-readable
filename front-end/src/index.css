@@ -30,6 +30,7 @@ code {
 /* Styled Navbar */
 .readable-categories {
   font-size: 0.9em;
+  list-style: none;
 }
 
 .readable-categories button {
