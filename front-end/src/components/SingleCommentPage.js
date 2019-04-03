@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 import moment from 'moment'
 import { IoIosHeart, IoIosHeartDislike } from 'react-icons/io'
 import { connect } from 'react-redux'
+import { NavLink } from 'react-router-dom'
 
 // Redux actions
-import { handleUpVoteComment, handleDownVoteComment } from '../actions/post'
+import { handleUpVoteComment, handleDownVoteComment, handleDeleteComment } from '../actions/post'
 
 class SingleCommentPage extends Component {
   handleLike = (type) => {
@@ -18,8 +19,15 @@ class SingleCommentPage extends Component {
     }
   }
 
+  handleDelete = () => {
+    const { dispatch } = this.props
+    const { id } = this.props.data
+    
+    dispatch(handleDeleteComment(id))
+  }
+
   render () {
-    const { timestamp, body, author, voteScore } = this.props.data
+    const { id, timestamp, body, author, voteScore } = this.props.data
 
     return (
       <div className='row'>
@@ -38,9 +46,10 @@ class SingleCommentPage extends Component {
 
           <div className='btn-group-comment pb-4'>
             <div className='btn-group'>
-              <button
+              <NavLink
+                to={`/edit-comment/${id}`}
                 className='btn btn-primary btn-sm'
-              > Edit </button>
+              > Edit </NavLink>
               <button
                 className='btn btn-primary btn-sm'
                 onClick={() => this.handleDelete()}

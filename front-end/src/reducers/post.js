@@ -5,7 +5,8 @@ import {
   UP_VOTE_POST,
   DOWN_VOTE_POST,
   UP_VOTE_COMMENT,
-  DOWN_VOTE_COMMENT
+  DOWN_VOTE_COMMENT,
+  DELETE_COMMENT
 } from '../actions/post'
 
 export default function post (state = {}, action) {
@@ -49,6 +50,18 @@ export default function post (state = {}, action) {
       return {
           ...state,
           comments: updatedComments,
+      }
+    case DELETE_COMMENT:
+      const { id } = action.comment
+
+      let newComments = state.comments.filter(comment =>
+        comment.id !== id  
+      )
+      // console.warn('ESSE É O NEW COMMENTS EM POST REDUCER', newComments)
+      return {
+          ...state,
+          commentCount: state.commentCount - 1,
+          comments: newComments,
       }
     default:
       return state

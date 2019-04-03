@@ -6,7 +6,8 @@ import {
   upVotePost,
   downVotePost,
   upVoteComment,
-  downVoteComment
+  downVoteComment,
+  deleteComment
 } from '../utils/api'
 
 export const POST_DETAILS = 'POST_DETAILS'
@@ -17,6 +18,7 @@ export const UP_VOTE_POST = 'UP_VOTE_POST'
 export const DOWN_VOTE_POST = 'DOWN_VOTE_POST'
 export const UP_VOTE_COMMENT = 'UP_VOTE_COMMENT'
 export const DOWN_VOTE_COMMENT = 'DOWN_VOTE_COMMENT'
+export const DELETE_COMMENT = 'DELETE_COMMENT'
 
 export function receivePostDetails (post) {
   return {
@@ -58,6 +60,7 @@ export function deletePostAction (id) {
   }
 }
 
+// Corrigir delete post
 export function handleDeletePost (id) {
   return dispatch => {
     return deletePost(id)
@@ -138,3 +141,19 @@ export function handleDownVoteComment (id) {
       .then(comment => dispatch(downVoteCommentAction(comment)))
   }
 }
+
+export function deleteCommentAction (comment) {
+  return {
+    type: DELETE_COMMENT,
+    comment
+  }
+}
+
+export function handleDeleteComment (id) {
+  return dispatch => {
+    return deleteComment(id)
+      .then(comment => dispatch(deleteCommentAction(comment)))
+      .catch(e => console.warn('Error on delete post: ',e))
+  }
+}
+

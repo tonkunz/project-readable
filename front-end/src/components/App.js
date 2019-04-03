@@ -12,6 +12,7 @@ import PostList from './PostList'
 import SinglePostPage from './SinglePostPage'
 import NewPost from './NewPost'
 import EditPost from './EditPost'
+import EditComment from './EditComment'
 
 class App extends Component {
   state = {
@@ -66,7 +67,8 @@ class App extends Component {
         <Route path='/new' component={NewPost}/>
         <Route exact path='/:category/:id' component={SinglePostPage} />
         <Route path='/:category/:id/edit-post' component={EditPost} />
-       <Footer />
+        <Route exact path='/edit-post/:id' component={EditComment}/>
+        <Footer />
       </div>
       </Router>
     )
