@@ -30,9 +30,14 @@ export default function post (state = {}, action) {
         comments: [...comments]
       }
     case UP_VOTE_POST:
+      return {
+        ...state,
+        voteScore: state.voteScore + 1
+      }
     case DOWN_VOTE_POST:
       return {
-        [action.post.id]: { ... action.post }
+        ...state,
+        voteScore: state.voteScore - 1
       }
     case UP_VOTE_COMMENT:
     case DOWN_VOTE_COMMENT:

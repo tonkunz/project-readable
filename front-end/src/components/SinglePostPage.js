@@ -37,9 +37,6 @@ class SinglePostPage extends Component {
     } else {
       dispatch(handleDownVotePost(id))
     }
-
-    dispatch(handlePostDetails(this.props.match.params.id))
-    dispatch(handleGetComments(this.props.match.params.id))
   }
 
   render () {
