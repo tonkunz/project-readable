@@ -5,7 +5,9 @@ import {
 } from '../actions/posts'
 import {
   EDIT_POST,
-  DELETE_POST
+  DELETE_POST,
+  UP_VOTE_POST,
+  DOWN_VOTE_POST,
 } from '../actions/post'
 
 export default function posts (state = {}, action) {
@@ -39,6 +41,12 @@ export default function posts (state = {}, action) {
           ...state[action.id],
           deleted: true
         }
+      }
+    case UP_VOTE_POST:
+    case DOWN_VOTE_POST:
+      return {
+        ...state,
+        [action.post.id]: { ...action.post }
       }
     default:
       return state

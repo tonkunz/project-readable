@@ -1,7 +1,11 @@
 import {
   POST_DETAILS,
   EDIT_POST,
-  GET_COMMENTS
+  GET_COMMENTS,
+  UP_VOTE_POST,
+  DOWN_VOTE_POST,
+  UP_VOTE_COMMENT,
+  DOWN_VOTE_COMMENT
 } from '../actions/post'
 
 export default function post (state = {}, action) {
@@ -24,6 +28,22 @@ export default function post (state = {}, action) {
       return {
         ...state,
         comments: [...comments]
+      }
+    case UP_VOTE_POST:
+    case DOWN_VOTE_POST:
+      return {
+        [action.post.id]: { ... action.post }
+      }
+    case UP_VOTE_COMMENT:
+    case DOWN_VOTE_COMMENT:
+      const { comment } = action
+      const updatedComments = state.comments.map(item => (
+          item.id === comment.id ? comment : item
+      ))
+      // console.log('DEBBUG REDUCER COMMENT: ', updatedComments)
+      return {
+          ...state,
+          comments: updatedComments,
       }
     default:
       return state

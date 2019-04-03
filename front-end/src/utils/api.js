@@ -138,7 +138,7 @@ export const upVoteComment = (id) => (
   // Used for voting on a comment.
   fetch(`${url}/comments/${id}`,{
     headers,
-    method: "PUT",
+    method: "POST",
     body: JSON.stringify({option: 'upVote'})
   })
     .then(res => res.json())
@@ -150,7 +150,7 @@ export const downVoteComment = (id) => (
   // Used for "down voting" on voting a comment
   fetch(`${url}/comments/${id}`,{
     headers,
-    method: "PUT",
+    method: "POST",
     body: JSON.stringify({option: 'downVote'})
   })
     .then(res => res.json())

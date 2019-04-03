@@ -1,11 +1,25 @@
 import React, { Component } from 'react'
 import moment from 'moment'
 import { IoIosHeart, IoIosHeartDislike } from 'react-icons/io'
+import { connect } from 'react-redux'
+
+// Redux actions
+import { handleUpVoteComment, handleDownVoteComment } from '../actions/post'
 
 class SingleCommentPage extends Component {
-  
+  handleLike = (type) => {
+    const { dispatch } = this.props
+    const { id } = this.props.data
+
+    if (type === 'upVote'){
+      dispatch(handleUpVoteComment(id))
+    } else {
+      dispatch(handleDownVoteComment(id))
+    }
+  }
+
   render () {
-    const { id, timestamp, body, author, voteScore } = this.props.data
+    const { timestamp, body, author, voteScore } = this.props.data
 
     return (
       <div className='row'>
@@ -18,11 +32,11 @@ class SingleCommentPage extends Component {
           </div>
           <p>{body}</p>
           <div>
-            <IoIosHeart color={'red'}/>
-            <IoIosHeartDislike />  {voteScore}
+            <IoIosHeart color={'red'} onClick={() => this.handleLike('upVote')}/>
+            <IoIosHeartDislike onClick={() => this.handleLike('downVote')}/>  {voteScore}
           </div>
 
-          <div className='btn-group-comment'>
+          <div className='btn-group-comment pb-4'>
             <div className='btn-group'>
               <button
                 className='btn btn-primary btn-sm'
@@ -39,4 +53,4 @@ class SingleCommentPage extends Component {
   }
 }
 
-export default SingleCommentPage
+export default connect()(SingleCommentPage)

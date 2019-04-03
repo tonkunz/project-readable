@@ -7,10 +7,12 @@ import { IoIosHeart, IoIosHeartDislike } from 'react-icons/io'
 import { NavLink, Redirect } from 'react-router-dom'
 import CommentsList from './CommentsList'
 import { handleGetComments } from '../actions/post'
+import { handleUpVotePost, handleDownVotePost } from '../actions/post'
 
 class SinglePostPage extends Component {
   state = {
     toHome: false,
+    post: ''
   }
 
   componentDidMount () {
@@ -25,6 +27,19 @@ class SinglePostPage extends Component {
     dispatch(handleDeletePost(this.props.match.params.id))
 
     this.setState({toHome: true})
+  }
+
+  handleVote = (id, type) => {
+    const { dispatch } = this.props
+
+    if (type === 'upVote') {
+      dispatch(handleUpVotePost(id))
+    } else {
+      dispatch(handleDownVotePost(id))
+    }
+
+    dispatch(handlePostDetails(this.props.match.params.id))
+    dispatch(handleGetComments(this.props.match.params.id))
   }
 
   render () {
@@ -53,7 +68,8 @@ class SinglePostPage extends Component {
                 <p className='post-body'>
                   {post.body}
                 </p>
-                <IoIosHeart color='red'/><IoIosHeartDislike /> {post.voteScore}
+                <IoIosHeart color='red' onClick={() => this.handleVote(post.id, 'upVote')}/>
+                <IoIosHeartDislike  onClick={() => this.handleVote(post.id, 'dowVote')}/> {post.voteScore}
                 
               </div>
             </div>      

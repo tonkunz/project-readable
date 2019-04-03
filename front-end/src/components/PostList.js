@@ -9,7 +9,7 @@ class PostList extends Component {
     const { categorySelected, sortOption, renderByVote, renderByTime} = this.props
 
     return (
-      <ul style={{listStyle: 'none'}} >
+      <ul className='list-unstyled'>
         <div className='category-title text-center'>
             <small className='text-muted'>Category Selected: </small>
             <span>{categorySelected.toUpperCase()}</span>

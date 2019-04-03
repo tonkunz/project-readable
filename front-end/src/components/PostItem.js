@@ -1,10 +1,24 @@
 import React, { Component } from 'react'
 import moment from 'moment'
 import { connect } from 'react-redux'
-import { FaHeart, FaRegHeart, FaComments } from 'react-icons/fa'
+import { FaComments } from 'react-icons/fa'
+import { IoIosHeart, IoIosHeartDislike } from 'react-icons/io'
 import { NavLink } from 'react-router-dom'
 
+// Redux
+import { handleUpVotePost, handleDownVotePost } from '../actions/post'
+
 class PostItem extends Component {
+  
+  handleLike = (id) => {
+    this.props.dispatch(handleUpVotePost(id))
+  }
+  
+  handleDislike = (id) => {
+    this.props.dispatch(handleDownVotePost(id))
+  }
+  
+
   render() {
     const { post } = this.props
 
@@ -22,7 +36,11 @@ class PostItem extends Component {
           <p className='post-body'>
             {post.body}
           </p>
-          <FaRegHeart color='red'/> {post.voteScore} <FaComments /> {post.commentCount}
+          <div className=''>
+          <IoIosHeart color='red' onClick={() => this.handleLike(post.id)}/>
+          <IoIosHeartDislike onClick={() => this.handleDislike(post.id)}/>  {post.voteScore} /  
+          <FaComments size={15}/> {post.commentCount}
+          </div>
         </div>
       </div>      
       <hr />
