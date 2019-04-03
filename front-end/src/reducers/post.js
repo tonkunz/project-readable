@@ -1,6 +1,7 @@
 import {
   POST_DETAILS,
-  EDIT_POST
+  EDIT_POST,
+  GET_COMMENTS
 } from '../actions/post'
 
 export default function post (state = {}, action) {
@@ -14,6 +15,15 @@ export default function post (state = {}, action) {
       return {
         ...state,
         ...action.post
+      }
+    case GET_COMMENTS:
+      // console.log('Comment: ', action.comments)
+      const comments = action.comments.sort((comment, current) => {
+        return current.voteScore - comment.voteScore
+      })
+      return {
+        ...state,
+        comments: [...comments]
       }
     default:
       return state

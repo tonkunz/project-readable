@@ -75,7 +75,7 @@ code {
 }
 
 .post-title {
-  font-size: 1.5em;
+  font-size: 2em;
   margin: 0;
 }
 
@@ -87,6 +87,11 @@ code {
 .post-body {
   font-size: 1.1em;
   margin: 1.2rem 0;
+}
+
+/* Comments styles */
+.comment-span {
+  font-size: 0.6em;
 }
 
 /* Styled Footer */

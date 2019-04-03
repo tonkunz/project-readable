@@ -2,8 +2,11 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { handlePostDetails, handleDeletePost } from '../actions/post'
 import moment from 'moment'
-import { FaChevronCircleLeft, FaHeart, FaRegHeart, FaComments } from 'react-icons/fa'
+import { FaChevronCircleLeft, FaComments } from 'react-icons/fa'
+import { IoIosHeart, IoIosHeartDislike } from 'react-icons/io'
 import { NavLink, Redirect } from 'react-router-dom'
+import CommentsList from './CommentsList'
+import { handleGetComments } from '../actions/post'
 
 class SinglePostPage extends Component {
   state = {
@@ -13,6 +16,7 @@ class SinglePostPage extends Component {
   componentDidMount () {
     const { dispatch } = this.props
     dispatch(handlePostDetails(this.props.match.params.id))
+    dispatch(handleGetComments(this.props.match.params.id))
   }
 
   handleDelete = () => {
@@ -34,13 +38,12 @@ class SinglePostPage extends Component {
     return (
       <div className="container readable-postitem">
         <div className='row'>
-          <div className='col-md-10'>
+          <div className='col-sm-10'>
             <div className="post-content">
               <h4 className='post-title'>
               <NavLink to='/'>
                 <FaChevronCircleLeft color='#2193b0' size={18} />
-              </NavLink>
-                {post.title}
+              </NavLink>   {post.title}
               </h4>
               <div>
                 <span className='post-span'>By: {post.author} </span>
@@ -50,7 +53,8 @@ class SinglePostPage extends Component {
                 <p className='post-body'>
                   {post.body}
                 </p>
-                <FaRegHeart color='red'/> {post.voteScore} <FaComments /> {post.commentCount}
+                <IoIosHeart color='red'/><IoIosHeartDislike /> {post.voteScore}
+                
               </div>
             </div>      
             <hr />
@@ -72,7 +76,7 @@ class SinglePostPage extends Component {
         </div>
 
         <div>
-          Comments Here
+          <CommentsList/>
         </div>
       </div>
     )
