@@ -10,6 +10,13 @@ class EditPost extends Component {
     toSinglePagePost: false
   }
 
+  componentDidMount () {
+    this.props.post && this.setState({
+      title: this.props.post.title,
+      body: this.props.post.body
+    })
+  }
+
   handleChange = (e) => (
     this.setState({
       [e.target.id]: e.target.value
@@ -75,4 +82,11 @@ class EditPost extends Component {
   }
 }
 
-export default connect()(EditPost)
+function mapStateToProps ({ posts }, { match }) {
+  const post = posts[match.params.id]
+  return {
+    post,
+  }
+}
+
+export default connect(mapStateToProps)(EditPost)

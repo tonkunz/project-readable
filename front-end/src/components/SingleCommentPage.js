@@ -4,7 +4,6 @@ import { IoIosHeart, IoIosHeartDislike } from 'react-icons/io'
 
 class SingleCommentPage extends Component {
   
-
   render () {
     const { id, timestamp, body, author, voteScore } = this.props.data
 
