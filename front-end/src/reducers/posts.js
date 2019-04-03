@@ -1,10 +1,11 @@
 import {
   RECEIVE_POSTS,
   ADD_POST,
-  RECEIVE_CATEGORY_POSTS
+  RECEIVE_CATEGORY_POSTS,
 } from '../actions/posts'
 import {
-  EDIT_POST
+  EDIT_POST,
+  DELETE_POST
 } from '../actions/post'
 
 export default function posts (state = {}, action) {
@@ -30,6 +31,14 @@ export default function posts (state = {}, action) {
         {post[current.id] = current; return post}, {})
       return {
         ...catPosts
+      }
+    case DELETE_POST:
+      return {
+        ...state,
+        [action.id]: {
+          ...state[action.id],
+          deleted: true
+        }
       }
     default:
       return state

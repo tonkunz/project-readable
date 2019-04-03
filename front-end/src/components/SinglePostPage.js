@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { handlePostDetails } from '../actions/post'
+import { handlePostDetails, handleDeletePost } from '../actions/post'
 import moment from 'moment'
 import { FaChevronCircleLeft, FaHeart, FaRegHeart, FaComments } from 'react-icons/fa'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Redirect } from 'react-router-dom'
 
 class SinglePostPage extends Component {
   state = {
@@ -16,13 +16,20 @@ class SinglePostPage extends Component {
   }
 
   handleDelete = () => {
-    alert('Clicou para deletar')
+    const { dispatch } = this.props
 
-    //dispatch(handleDeletePost(this.props.match.params.id))
+    dispatch(handleDeletePost(this.props.match.params.id))
+
+    this.setState({toHome: true})
   }
 
   render () {
     const { post } = this.props
+    const { toHome } = this.state
+
+    if (toHome === true) {
+      return <Redirect to='/'/>
+    }
 
     return (
       <div className="container readable-postitem">

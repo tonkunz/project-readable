@@ -6,7 +6,7 @@ import { Redirect } from 'react-router-dom'
 class NewPost extends Component {
   state = {
     title: '',
-    category: '',
+    category: 'react',
     author: '',
     body: '',
     toHome: false,
