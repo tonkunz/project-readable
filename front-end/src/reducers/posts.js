@@ -36,13 +36,11 @@ export default function posts (state = {}, action) {
         ...catPosts
       }
     case DELETE_POST:
-      return {
-        ...state,
-        [action.id]: {
-          ...state[action.id],
-          deleted: true
-        }
-      }
+      const { id } = action.post
+      let newState = { ...state }
+      delete newState[id]
+
+      return newState
     case UP_VOTE_POST:
     case DOWN_VOTE_POST:
       return {
@@ -50,8 +48,7 @@ export default function posts (state = {}, action) {
         [action.post.id]: { ...action.post }
       }
     case DELETE_COMMENT:
-      const { parentId } = action.comment
-      // console.warn('ParentID em posts reducer: ', parentId)
+      const { parentId } = action.commentCount
 
       return {
         ...state,

@@ -53,10 +53,10 @@ export function handleEditPost (post) {
   }
 }
 
-export function deletePostAction (id) {
+export function deletePostAction (post) {
   return {
     type: DELETE_POST,
-    id
+    post
   }
 }
 
@@ -64,7 +64,7 @@ export function deletePostAction (id) {
 export function handleDeletePost (id) {
   return dispatch => {
     return deletePost(id)
-      .then(post => dispatch(deletePostAction(post.id)))
+      .then(post => dispatch(deletePostAction(post)))
   }
 }
 

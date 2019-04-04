@@ -51,7 +51,7 @@ export default function post (state = {}, action) {
           ...state,
           comments: updatedComments,
       }
-    case DELETE_COMMENT:
+      case DELETE_COMMENT:
       const { id } = action.comment
 
       let newComments = state.comments.filter(comment =>
