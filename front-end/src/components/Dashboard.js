@@ -46,6 +46,10 @@ class Dashboard extends Component {
             />
           </div>
           <div className='col-md-9'>
+            <div className='category-title text-center'>
+              <small className='text-muted'>Category Selected: </small>
+              <span>{this.state.categorySelected.toUpperCase()}</span>
+            </div>
             <PostList
               categorySelected={this.state.categorySelected}
               sortOption={this.state.sortOption}

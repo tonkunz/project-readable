@@ -8,7 +8,6 @@ import {
   DELETE_POST,
   UP_VOTE_POST,
   DOWN_VOTE_POST,
-  DELETE_COMMENT
 } from '../actions/post'
 
 export default function posts (state = {}, action) {
@@ -46,16 +45,6 @@ export default function posts (state = {}, action) {
       return {
         ...state,
         [action.post.id]: { ...action.post }
-      }
-    case DELETE_COMMENT:
-      const { parentId } = action.comment
-
-      return {
-        ...state,
-        [parentId]: {
-          ...state[parentId],
-          commentCount: state[parentId].commentCount - 1
-        }
       }
     default:
       return state

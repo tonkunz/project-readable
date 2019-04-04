@@ -7,7 +7,8 @@ import {
   UP_VOTE_COMMENT,
   DOWN_VOTE_COMMENT,
   DELETE_COMMENT,
-  ADD_COMMENT
+  ADD_COMMENT,
+  EDIT_COMMENT
 } from '../actions/post'
 
 export default function post (state = {}, action) {
@@ -67,7 +68,20 @@ export default function post (state = {}, action) {
         comments: state.comments.concat(action.comment),
         commentCount: state.commentCount + 1
       }
+    case EDIT_COMMENT:
+      return {
+        ...state,
+        comments: formatEditedComments(state.comments,action.comment)
+      }
     default:
       return state
   }
+}
+
+function formatEditedComments (comments, actionComment) {
+  return comments.map(comment =>
+    (comment.id === actionComment.id)
+      ? comment = actionComment 
+      : comment
+  )
 }

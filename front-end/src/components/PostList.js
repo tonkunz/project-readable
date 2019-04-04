@@ -6,14 +6,10 @@ import { connect } from 'react-redux'
 class PostList extends Component {
   
   render() {
-    const { categorySelected, sortOption, renderByVote, renderByTime} = this.props
+    const { sortOption, renderByVote, renderByTime} = this.props
 
     return (
       <ul className='list-unstyled'>
-        <div className='category-title text-center'>
-            <small className='text-muted'>Category Selected: </small>
-            <span>{categorySelected.toUpperCase()}</span>
-        </div>
         {sortOption === 'votescore'
           ? renderByVote.map(id => (
             <li key={id}>

@@ -8,7 +8,8 @@ import {
   downVotePost,
   upVoteComment,
   downVoteComment,
-  deleteComment
+  deleteComment,
+  editComment
 } from '../utils/api'
 
 export const POST_DETAILS = 'POST_DETAILS'
@@ -21,6 +22,7 @@ export const DOWN_VOTE_POST = 'DOWN_VOTE_POST'
 export const UP_VOTE_COMMENT = 'UP_VOTE_COMMENT'
 export const DOWN_VOTE_COMMENT = 'DOWN_VOTE_COMMENT'
 export const DELETE_COMMENT = 'DELETE_COMMENT'
+export const EDIT_COMMENT = 'EDIT_COMMENT'
 
 export function receivePostDetails (post) {
   return {
@@ -168,7 +170,21 @@ export function handleDeleteComment (id) {
   return dispatch => {
     return deleteComment(id)
       .then(comment => dispatch(deleteCommentAction(comment)))
-      .catch(e => console.warn('Error on delete post: ',e))
+      .catch(e => console.warn('Error on delete: ',e))
   }
 }
 
+export function editCommentAction (comment) {
+  return {
+    type: EDIT_COMMENT,
+    comment
+  }
+}
+
+export function handleEditComment (comment) {
+  return dispatch => {
+    return editComment(comment)
+      .then(comment => dispatch(editCommentAction(comment)))
+      .catch(e => console.error('Error on edit comment: ', e))
+  }
+}
