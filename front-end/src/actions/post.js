@@ -3,6 +3,7 @@ import {
   updatePost,
   deletePost,
   getComments,
+  addComment,
   upVotePost,
   downVotePost,
   upVoteComment,
@@ -14,6 +15,7 @@ export const POST_DETAILS = 'POST_DETAILS'
 export const EDIT_POST = 'EDIT_POST'
 export const DELETE_POST = 'DELETE_POST'
 export const GET_COMMENTS = 'GET_COMMENTS'
+export const ADD_COMMENT = 'ADD_COMMENT'
 export const UP_VOTE_POST = 'UP_VOTE_POST'
 export const DOWN_VOTE_POST = 'DOWN_VOTE_POST'
 export const UP_VOTE_COMMENT = 'UP_VOTE_COMMENT'
@@ -60,7 +62,6 @@ export function deletePostAction (post) {
   }
 }
 
-// Corrigir delete post
 export function handleDeletePost (id) {
   return dispatch => {
     return deletePost(id)
@@ -76,7 +77,6 @@ export function getCommentsAction (comments) {
 }
 
 export function handleGetComments (id) {
-  // Get all the comments for a single post
   return dispatch => {
     return getComments(id)
      .then(comments => dispatch(getCommentsAction(comments)))
@@ -111,6 +111,21 @@ export function handleDownVotePost (id) {
     return downVotePost(id)
       .then(post => dispatch(downVotePostAction(post)))
       .catch(e => console.warn('An error on vote post: ',e))
+  }
+}
+
+export function addCommentAction (comment) {
+  return {
+    type: ADD_COMMENT,
+    comment
+  }
+}
+
+export function handleAddComment (comment) {
+  return dispatch => {
+    return addComment(comment)
+      .then(comment => dispatch(addCommentAction(comment)))
+      .catch(e => console.log('Error on add new comment: ',e))
   }
 }
 

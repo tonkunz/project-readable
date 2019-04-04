@@ -8,6 +8,7 @@ import { NavLink, Redirect } from 'react-router-dom'
 import CommentsList from './CommentsList'
 import { handleGetComments } from '../actions/post'
 import { handleUpVotePost, handleDownVotePost } from '../actions/post'
+import NewComment from './NewComment'
 
 class SinglePostPage extends Component {
   state = {
@@ -89,7 +90,8 @@ class SinglePostPage extends Component {
         </div>
 
         <div>
-          <CommentsList/>
+          <NewComment parentId={post.id}/>
+          <CommentsList />
         </div>
       </div>
     )

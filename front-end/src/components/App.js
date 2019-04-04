@@ -67,7 +67,7 @@ class App extends Component {
         <Route path='/new' component={NewPost}/>
         <Route exact path='/:category/:id' component={SinglePostPage} />
         <Route path='/:category/:id/edit-post' component={EditPost} />
-        <Route exact path='/edit-post/:id' component={EditComment}/>
+        <Route path='/edit-post/:id' component={EditComment}/>
         <Footer />
       </div>
       </Router>

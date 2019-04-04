@@ -48,7 +48,7 @@ export default function posts (state = {}, action) {
         [action.post.id]: { ...action.post }
       }
     case DELETE_COMMENT:
-      const { parentId } = action.commentCount
+      const { parentId } = action.comment
 
       return {
         ...state,
