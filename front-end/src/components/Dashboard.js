@@ -27,7 +27,6 @@ class Dashboard extends Component {
     } else {
       dispatch(handleInitialData())
     }
-    
     this.setState({ categorySelected })
   }
 

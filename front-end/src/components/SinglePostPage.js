@@ -54,7 +54,7 @@ class SinglePostPage extends Component {
           <FaExclamationTriangle color='#2193b0' size={50}/>
           <h3 className='display-4'>
             Error 404...
-            <small class="text-muted">This page does not exist anymore :(</small>
+            <small className="text-muted">This page does not exist anymore :(</small>
           </h3>
         </div>
       )
