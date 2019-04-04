@@ -70,7 +70,7 @@ class Menu extends Component {
   }
 }
 
-const mapStateToProps = ({ categories }, { handleCategory, handleSort }) => ({
+const mapStateToProps = ({ categories }) => ({
   categories: categories,
 })
 
