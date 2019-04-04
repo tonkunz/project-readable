@@ -12,9 +12,12 @@ import {
 } from '../actions/post'
 
 class SingleCommentPage extends Component {
-  state = {
-    edit: false,
-    body: ''
+  constructor(props) {
+    super(props)
+    this.state = {
+      edit: false,
+      body: props.data.body
+    }
   }
   
   handleLike = (type) => {

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { handleAddPost } from '../actions/posts'
 import { Redirect } from 'react-router-dom'
+import { handleReceiveCategories } from '../actions/categories'
 
 class NewPost extends Component {
   state = {
@@ -10,6 +11,10 @@ class NewPost extends Component {
     author: '',
     body: '',
     toHome: false,
+  }
+
+  componentDidMount () {
+    this.props.dispatch(handleReceiveCategories())
   }
 
   handleChange = (e) => (

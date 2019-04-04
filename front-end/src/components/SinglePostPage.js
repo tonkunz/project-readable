@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { handlePostDetails, handleDeletePost } from '../actions/post'
 import moment from 'moment'
-import { FaChevronCircleLeft, FaComments } from 'react-icons/fa'
+import { FaChevronCircleLeft, FaExclamationTriangle } from 'react-icons/fa'
 import { IoIosHeart, IoIosHeartDislike } from 'react-icons/io'
 import { NavLink, Redirect } from 'react-router-dom'
 import CommentsList from './CommentsList'
@@ -46,6 +46,18 @@ class SinglePostPage extends Component {
 
     if (toHome === true) {
       return <Redirect to='/'/>
+    }
+
+    if (post.id === undefined ) {
+      return (
+        <div className='container my-sm-5 py-sm-5 text-center'>
+          <FaExclamationTriangle color='#2193b0' size={50}/>
+          <h3 className='display-4'>
+            Error 404...
+            <small class="text-muted">This page does not exist anymore :(</small>
+          </h3>
+        </div>
+      )
     }
 
     return (
