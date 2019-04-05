@@ -17,6 +17,19 @@ class Dashboard extends Component {
 
   componentDidMount(){
     this.props.dispatch(handleInitialData())
+    console.log("Dashboard | DidMount")
+    console.log(this.props)
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log('Dashboard | DidUpdate')
+    console.log(prevProps, prevState)
+    console.log(this.props, this.state)
+    if (this.props.match.params) {
+      if (this.state.categorySelected !== this.props.match.params.category) {
+        this.handleCategorySelected(this.props.match.params.category);
+      }
+    }
   }
 
   handleCategorySelected = (categorySelected) => {
@@ -27,14 +40,20 @@ class Dashboard extends Component {
     } else {
       dispatch(handleInitialData())
     }
+    console.log(categorySelected);
+    this.props.history.push('/' + categorySelected)
     this.setState({ categorySelected })
   }
 
   handleSortChoice = (sortOption) => {
     this.setState({ sortOption })
   }
-
   render() {
+
+    if (this.state.categorySelected === 'new') {
+      return <div></div>
+    }
+
     return (
       <div className='container readable-content'>
         <div className='row'>

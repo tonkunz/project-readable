@@ -16,7 +16,8 @@ class App extends Component {
         <Fragment>
           <Header />
           <Route exact path='/' component={Dashboard}/>
-          <Route path='/new' component={NewPost}/>
+          <Route exact path='/new' component={NewPost}/>
+          <Route exact path='/:category' component={Dashboard}/>
           <Route exact path='/:category/:id' component={SinglePostPage} />
           <Route path='/:category/:id/edit-post' component={EditPost} />
           <Footer />
